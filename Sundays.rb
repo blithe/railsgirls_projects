@@ -10,14 +10,18 @@ require 'date'
 # many Sundays fell on the first of the month during the twentieth century (1 Jan
 # 1901 to 31 Dec 2000)?
 
-start_date = Date.new(1901, 1, 1)
-end_date = Date.new(2000, 12, 31)
+@start_date = Date.new(1901, 1, 1)
+@end_date = Date.new(2000, 12, 31)
 
-sundays_on_first_of_month = 0
-(start_date..end_date).each do |day|
-	if day.sunday? && day.mday == 1
-		sundays_on_first_of_month += 1
+def sunday_on_first_of_month?(day)
+	day.sunday? && day.mday == 1
+end
+
+def sundays_count
+	(@start_date..@end_date).inject(0) do |count, day|
+		count + (sunday_on_first_of_month?(day) ? 1 : 0)
 	end
 end
 
-puts sundays_on_first_of_month #171
+
+puts sundays_count # 171
