@@ -23,5 +23,4 @@ def sundays_count
 	end
 end
 
-
 puts sundays_count # 171
